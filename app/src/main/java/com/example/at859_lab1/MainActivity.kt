@@ -1,6 +1,8 @@
 package com.example.at859_lab1
 
 import android.os.Bundle
+import android.widget.TextView
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -9,12 +11,34 @@ import androidx.core.view.WindowInsetsCompat
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        //enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        val textView = findViewById<TextView>(R.id.textView)
+        val button = findViewById<Button>(R.id.button)
+
+        val buttonTwo = findViewById<Button>(R.id.button2)
+
+        var counter = 0
+        var incrementBy = 1
+
+        button.setOnClickListener {
+            counter = counter + incrementBy
+            textView.text = counter.toString()
         }
+
+        if (counter==10) {
+            buttonTwo.visibility = Button.VISIBLE
+
+            buttonTwo.setOnClickListener {
+                incrementBy = 2
+                buttonTwo.visibility = Button.INVISIBLE
+
+                button.text = "ADD 2"
+            }
+        }
+
+        counter = counter + incrementBy
+        textView.text = counter.toString()
     }
 }
