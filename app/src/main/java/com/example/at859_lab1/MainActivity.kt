@@ -2,6 +2,7 @@ package com.example.at859_lab1
 
 import android.os.Bundle
 import android.widget.TextView
+import android.util.Log
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
+    var counter = 0
+    var incrementBy = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //enableEdgeToEdge()
@@ -19,24 +23,23 @@ class MainActivity : AppCompatActivity() {
 
         val buttonTwo = findViewById<Button>(R.id.button2)
 
-        var counter = 0
-        var incrementBy = 1
-
         button.setOnClickListener {
             counter = counter + incrementBy
             textView.text = counter.toString()
-        }
 
-        if (counter==10) {
-            buttonTwo.visibility = Button.VISIBLE
+            if (counter==10) {
+                buttonTwo.visibility = Button.VISIBLE
 
-            buttonTwo.setOnClickListener {
-                incrementBy = 2
-                buttonTwo.visibility = Button.INVISIBLE
+                buttonTwo.setOnClickListener {
+                    incrementBy = 2
+                    buttonTwo.visibility = Button.INVISIBLE
 
-                button.text = "ADD 2"
+                    button.text = "ADD 2"
+                }
             }
         }
+
+
 
         counter = counter + incrementBy
         textView.text = counter.toString()
